@@ -6,16 +6,16 @@ const AboutContent = () => {
     { icon: <Palette className="w-4 h-4" />, label: "Painting (District 2nd)" },
     { icon: <Guitar className="w-4 h-4" />, label: "Guitarist & Vocalist" },
     { icon: <Coffee className="w-4 h-4" />, label: "Coffee & Code" },
-    { icon: <Heart className="w-4 h-4" />, label: "Open Source & GenAI" },
+    { icon: <Heart className="w-4 h-4" />, label: "Learning something new" },
   ];
 
   return (
     <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
       {/* Toolbar */}
       <div className="flex flex-wrap gap-1 p-1 rounded-sm" style={{ background: "hsl(210, 15%, 88%)", border: "1px solid hsl(210, 15%, 78%)" }}>
-        <button className="xp-btn text-[10px] sm:text-[11px]">📄 Overview</button>
-        <button className="xp-btn text-[10px] sm:text-[11px]">🎯 Goals</button>
-        <button className="xp-btn text-[10px] sm:text-[11px]">🏆 Achievements</button>
+        <button className="xp-btn text-[10px] sm:text-[11px]">Overview</button>
+        <button className="xp-btn text-[10px] sm:text-[11px]">Goals</button>
+        <button className="xp-btn text-[10px] sm:text-[11px]">Achievements</button>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
@@ -42,13 +42,13 @@ const AboutContent = () => {
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
             >
-              {">"} Hardik Hathwal_
+              {">"} Hardik Hathwal {"<"}
             </motion.h2>
             <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 mt-1 justify-center sm:justify-start">
-              <GraduationCap className="w-4 h-4 flex-shrink-0" /> <span>B.Tech in AI — Newton School of Technology, Rishihood University</span>
+              <GraduationCap className="w-4 h-4 flex-shrink-0" /> <span>B.Tech in CS/AI — Newton School of Technology, Rishihood University</span>
             </p>
             <p className="text-xs sm:text-sm text-muted-foreground flex items-center gap-1 justify-center sm:justify-start">
-              <MapPin className="w-4 h-4 flex-shrink-0" /> Nainital, India
+              <MapPin className="w-4 h-4 flex-shrink-0" /> Sonipat, Haryana, India
             </p>
           </div>
         </div>
