@@ -1,0 +1,299 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 213 40% 45%;
+    --foreground: 220 20% 10%;
+
+    --card: 220 15% 92%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 220 15% 92%;
+    --popover-foreground: 220 20% 10%;
+
+    --primary: 216 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 15% 82%;
+    --secondary-foreground: 220 20% 10%;
+
+    --muted: 210 15% 85%;
+    --muted-foreground: 215 12% 40%;
+
+    --accent: 130 50% 35%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 75%;
+    --input: 210 20% 80%;
+    --ring: 216 100% 45%;
+
+    --radius: 0px;
+
+    /* XP-specific tokens */
+    --xp-title-start: 216 100% 45%;
+    --xp-title-end: 216 80% 55%;
+    --xp-title-inactive: 210 10% 60%;
+    --xp-chrome: 210 15% 88%;
+    --xp-chrome-dark: 210 15% 78%;
+    --xp-taskbar: 216 70% 40%;
+    --xp-taskbar-highlight: 216 80% 50%;
+    --xp-start-green: 130 50% 35%;
+    --xp-start-green-hover: 130 55% 40%;
+    --xp-desktop: 213 40% 45%;
+    --xp-window-bg: 220 20% 95%;
+    --xp-window-border: 210 30% 70%;
+    --xp-selection: 216 100% 50%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-hidden;
+    font-family: 'Inter', 'Segoe UI', Tahoma, sans-serif;
+  }
+}
+
+@layer components {
+  /* XP Window Title Bar Gradient */
+  .xp-title-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(216, 100%, 55%) 0%,
+      hsl(216, 90%, 45%) 8%,
+      hsl(216, 85%, 40%) 40%,
+      hsl(216, 80%, 35%) 88%,
+      hsl(216, 90%, 45%) 93%,
+      hsl(216, 100%, 55%) 95%,
+      hsl(216, 80%, 40%) 100%
+    );
+  }
+
+  .xp-title-gradient-inactive {
+    background: linear-gradient(
+      180deg,
+      hsl(210, 15%, 65%) 0%,
+      hsl(210, 12%, 55%) 8%,
+      hsl(210, 10%, 50%) 40%,
+      hsl(210, 8%, 45%) 88%,
+      hsl(210, 12%, 55%) 93%,
+      hsl(210, 15%, 65%) 95%,
+      hsl(210, 10%, 50%) 100%
+    );
+  }
+
+  /* XP Taskbar Gradient */
+  .xp-taskbar-gradient {
+    background: linear-gradient(
+      180deg,
+      hsl(216, 70%, 48%) 0%,
+      hsl(216, 65%, 38%) 3%,
+      hsl(216, 60%, 32%) 50%,
+      hsl(216, 55%, 28%) 97%,
+      hsl(216, 50%, 22%) 100%
+    );
+  }
+
+  /* XP Start Button */
+  .xp-start-btn {
+    background: linear-gradient(
+      180deg,
+      hsl(130, 60%, 48%) 0%,
+      hsl(130, 55%, 38%) 8%,
+      hsl(130, 50%, 30%) 50%,
+      hsl(130, 55%, 35%) 92%,
+      hsl(130, 60%, 42%) 100%
+    );
+    border-radius: 0 8px 8px 0;
+  }
+
+  .xp-start-btn:hover {
+    background: linear-gradient(
+      180deg,
+      hsl(130, 65%, 55%) 0%,
+      hsl(130, 60%, 45%) 8%,
+      hsl(130, 55%, 35%) 50%,
+      hsl(130, 60%, 40%) 92%,
+      hsl(130, 65%, 48%) 100%
+    );
+  }
+
+  /* XP Button styles */
+  .xp-btn {
+    background: linear-gradient(180deg, hsl(0, 0%, 98%) 0%, hsl(210, 15%, 88%) 45%, hsl(210, 15%, 82%) 100%);
+    border: 1px solid hsl(210, 20%, 70%);
+    border-radius: 3px;
+    padding: 2px 12px;
+    font-size: 12px;
+    cursor: pointer;
+    box-shadow: inset 0 1px 0 hsl(0, 0%, 100%), 0 1px 2px hsl(0, 0%, 0%, 0.1);
+  }
+
+  .xp-btn:hover {
+    background: linear-gradient(180deg, hsl(216, 80%, 90%) 0%, hsl(216, 70%, 78%) 45%, hsl(216, 60%, 70%) 100%);
+    border-color: hsl(216, 80%, 55%);
+  }
+
+  .xp-btn:active {
+    background: linear-gradient(180deg, hsl(210, 15%, 82%) 0%, hsl(210, 15%, 88%) 100%);
+    box-shadow: inset 0 1px 3px hsl(0, 0%, 0%, 0.2);
+  }
+
+  /* XP Window Chrome */
+  .xp-window-shadow {
+    box-shadow:
+      0 0 0 1px hsl(216, 80%, 35%),
+      0 0 0 2px hsl(216, 60%, 55%),
+      2px 2px 12px hsl(0, 0%, 0%, 0.3),
+      0 0 40px hsl(0, 0%, 0%, 0.1);
+  }
+
+  .xp-window-shadow-focused {
+    box-shadow:
+      0 0 0 1px hsl(216, 80%, 35%),
+      0 0 0 2px hsl(216, 60%, 55%),
+      4px 4px 20px hsl(0, 0%, 0%, 0.4),
+      0 0 60px hsl(0, 0%, 0%, 0.15);
+  }
+
+  /* XP Inset borders */
+  .xp-inset {
+    box-shadow:
+      inset 1px 1px 2px hsl(0, 0%, 0%, 0.15),
+      inset -1px -1px 0 hsl(0, 0%, 100%, 0.8);
+    border: 1px solid hsl(210, 15%, 70%);
+  }
+
+  /* Scanline overlay effect */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      hsl(0, 0%, 0%, 0.02) 2px,
+      hsl(0, 0%, 0%, 0.02) 4px
+    );
+    pointer-events: none;
+    z-index: 50;
+  }
+
+  /* Retro pixel text */
+  .font-pixel {
+    font-family: 'VT323', monospace;
+  }
+
+  /* Selection highlight XP style */
+  .xp-selection {
+    background: hsl(var(--xp-selection) / 0.3);
+    border: 1px dotted hsl(var(--xp-selection));
+  }
+
+  /* Bliss-style gradient background */
+  .xp-desktop-bg {
+    background: linear-gradient(
+      180deg,
+      hsl(200, 70%, 55%) 0%,
+      hsl(210, 60%, 50%) 30%,
+      hsl(130, 45%, 55%) 70%,
+      hsl(100, 50%, 45%) 100%
+    );
+  }
+
+  /* CRT flicker */
+  @keyframes crt-flicker {
+    0% { opacity: 0.97; }
+    5% { opacity: 0.95; }
+    10% { opacity: 0.98; }
+    15% { opacity: 0.96; }
+    20% { opacity: 1; }
+    100% { opacity: 1; }
+  }
+
+  @keyframes boot-text {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink-cursor {
+    0%, 50% { border-color: hsl(0, 0%, 80%); }
+    51%, 100% { border-color: transparent; }
+  }
+
+  @keyframes progress-fill {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 5px hsl(216, 100%, 50%, 0.3); }
+    50% { box-shadow: 0 0 20px hsl(216, 100%, 50%, 0.6); }
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Scrollbar XP style */
+  ::-webkit-scrollbar {
+    width: 17px;
+    height: 17px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(210, 15%, 90%);
+    border: 1px solid hsl(210, 15%, 80%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, hsl(0, 0%, 95%) 0%, hsl(210, 10%, 82%) 50%, hsl(210, 10%, 75%) 100%);
+    border: 1px solid hsl(210, 15%, 65%);
+    border-radius: 0;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, hsl(216, 70%, 85%) 0%, hsl(216, 60%, 72%) 50%, hsl(216, 50%, 65%) 100%);
+  }
+
+  ::-webkit-scrollbar-button {
+    display: block;
+    height: 17px;
+    background: linear-gradient(180deg, hsl(0, 0%, 96%) 0%, hsl(210, 10%, 85%) 100%);
+    border: 1px solid hsl(210, 15%, 70%);
+  }
+}
