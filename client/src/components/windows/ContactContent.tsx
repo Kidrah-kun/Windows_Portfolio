@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
+import emailjs from '@emailjs/browser';
 import { Send, Mail, Github, Linkedin, Code2, MessageSquare, Phone } from "lucide-react";
 
 const ContactContent = () => {
@@ -7,18 +8,39 @@ const ContactContent = () => {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      alert("Please fill out all required fields.");
+      return;
+    }
     setSending(true);
-    setTimeout(() => {
-      setSending(false);
+    try {
+      await emailjs.send(
+        "service_aae8pk8",
+        "template_gpnas2i",
+        {
+          name: formData.name,
+          email: formData.email,
+          title: formData.subject,
+          message: formData.message,
+          time: new Date().toLocaleString(),
+        },
+        "4bt6AfRgPSo9187UX"
+      );
       setSent(true);
+      setFormData({ name: "", email: "", subject: "", message: "" });
       setTimeout(() => setSent(false), 3000);
-    }, 1500);
+    } catch (error) {
+      console.error("Failed to send email:", error);
+      alert("Failed to send message. Please try again later.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const socials = [
-    { icon: <Mail className="w-5 h-5" />, label: "Email", value: "hardik.hathwal2024@nst.rishihood.edu.in", href: "mailto:hardik.hathwal2024@nst.rishihood.edu.in" },
+    { icon: <Mail className="w-5 h-5" />, label: "Email", value: "hardikhathwal.work@gmail.com", href: "mailto:hardikhathwal.work@gmail.com" },
     { icon: <Phone className="w-5 h-5" />, label: "Phone", value: "+91 8909656869", href: "tel:+918909656869" },
     { icon: <Github className="w-5 h-5" />, label: "GitHub", value: "github.com/Kidrah-kun", href: "https://github.com/Kidrah-kun" },
     { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", value: "Hardik Hathwal", href: "https://www.linkedin.com/in/hardik-hathwal-5098b2316/" },
@@ -38,7 +60,7 @@ const ContactContent = () => {
             <div className="flex items-center gap-2">
               <label className="text-xs text-muted-foreground w-16 text-right">To:</label>
               <div className="flex-1 px-2 py-1 text-xs rounded-sm xp-inset" style={{ background: "hsl(210, 15%, 95%)" }}>
-                hardik.hathwal2024@nst.rishihood.edu.in
+                hardikhathwal.work@gmail.com
               </div>
             </div>
 
