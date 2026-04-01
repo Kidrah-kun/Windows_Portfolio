@@ -1,15 +1,26 @@
 import { motion } from "framer-motion";
 import { Download, Eye, FileText, Award, Briefcase, GraduationCap, Code } from "lucide-react";
+import { useMemo } from "react";
+import ReactMarkdown from "react-markdown";
+import { getProjects, getEducation, getSkills } from "@/lib/content";
 
 const ResumeContent = () => {
+  const education = useMemo(() => getEducation(), []);
+  const projects = useMemo(() => getProjects().slice(0, 3), []);
+  const skills = useMemo(() => getSkills(), []);
   return (
     <div className="p-4 space-y-4">
       {/* Toolbar */}
       <div className="flex items-center justify-between p-1 rounded-sm" style={{ background: "hsl(210, 15%, 88%)", border: "1px solid hsl(210, 15%, 78%)" }}>
         <div className="flex gap-1">
-          <button className="xp-btn text-[11px] flex items-center gap-1">
+          <a 
+            href="https://drive.google.com/file/d/1vfalasgy-l-nFxmIMBktlRpe2rhEQjJi/view?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="xp-btn text-[11px] flex items-center gap-1 no-underline text-foreground"
+          >
             <Download className="w-3 h-3" /> Download PDF
-          </button>
+          </a>
           <button className="xp-btn text-[11px] flex items-center gap-1">
             <Eye className="w-3 h-3" /> Preview
           </button>
@@ -55,27 +66,15 @@ const ResumeContent = () => {
             <GraduationCap className="w-4 h-4" /> EDUCATION
           </h3>
           <div className="ml-6 space-y-3">
-            <div>
-              <div className="flex justify-between">
-                <p className="text-sm font-semibold text-foreground">B.Tech in Artificial Intelligence</p>
-                <p className="text-xs text-muted-foreground">2024 - 2028</p>
+            {education.map((edu, i) => (
+              <div key={i}>
+                <div className="flex justify-between">
+                  <p className="text-sm font-semibold text-foreground">{edu.title}</p>
+                  <p className="text-xs text-muted-foreground">{edu.date}</p>
+                </div>
+                <p className="text-xs text-muted-foreground">{edu.institution} • Grade: {edu.grade}</p>
               </div>
-              <p className="text-xs text-muted-foreground">Newton School of Technology, Rishihood University • Grade: 7.2/10.0</p>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <p className="text-sm font-semibold text-foreground">Intermediate (Class XII)</p>
-                <p className="text-xs text-muted-foreground">2023 - 2024</p>
-              </div>
-              <p className="text-xs text-muted-foreground">St Joseph's College, Nainital • Grade: 75.0%</p>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <p className="text-sm font-semibold text-foreground">Matriculation (Class X)</p>
-                <p className="text-xs text-muted-foreground">2021 - 2022</p>
-              </div>
-              <p className="text-xs text-muted-foreground">St Joseph's College, Nainital • Grade: 89.0%</p>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -85,27 +84,15 @@ const ResumeContent = () => {
             <Briefcase className="w-4 h-4" /> KEY PROJECTS
           </h3>
           <div className="ml-6 space-y-2">
-            <div>
-              <div className="flex justify-between">
-                <p className="text-sm font-semibold text-foreground">Anime Style Interview App</p>
-                <p className="text-xs text-muted-foreground">Jan 2026</p>
+            {projects.map((proj, i) => (
+              <div key={i}>
+                <div className="flex justify-between">
+                  <p className="text-sm font-semibold text-foreground">{proj.title}</p>
+                  <p className="text-xs text-muted-foreground">{proj.date || ""}</p>
+                </div>
+                <p className="text-xs text-foreground">• {proj.tech.join(", ")}</p>
               </div>
-              <p className="text-xs text-foreground">• Gamified AI interview platform using React, Node.js, MongoDB, Groq (Llama 3.3)</p>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <p className="text-sm font-semibold text-foreground">Library Management System</p>
-                <p className="text-xs text-muted-foreground">Nov 2025</p>
-              </div>
-              <p className="text-xs text-foreground">• Full-stack library system with React, Node.js, MongoDB, JWT auth</p>
-            </div>
-            <div>
-              <div className="flex justify-between">
-                <p className="text-sm font-semibold text-foreground">Finance Management App</p>
-                <p className="text-xs text-muted-foreground">May 2025</p>
-              </div>
-              <p className="text-xs text-foreground">• Personal finance dashboard with React, Recharts, local storage</p>
-            </div>
+            ))}
           </div>
         </div>
 
@@ -114,12 +101,12 @@ const ResumeContent = () => {
           <h3 className="flex items-center gap-2 text-sm font-bold text-primary mb-2">
             <FileText className="w-4 h-4" /> TECHNICAL SKILLS
           </h3>
-          <div className="ml-6 text-xs text-foreground space-y-1">
-            <p><strong>Languages:</strong> Python, TypeScript, HTML, CSS, JavaScript, Java</p>
-            <p><strong>Frontend:</strong> React, Recharts</p>
-            <p><strong>Backend:</strong> Node.js, Express JS, MongoDB, MySQL, Prisma ORM</p>
-            <p><strong>Data Tools:</strong> NumPy, Pandas, Excel</p>
-            <p><strong>Others:</strong> Git & GitHub, GenAI, Data Structures</p>
+          <div className="ml-6 text-xs text-foreground prose prose-sm prose-p:my-1 prose-strong:text-foreground">
+            {skills?.body ? (
+              <ReactMarkdown>{skills.body}</ReactMarkdown>
+            ) : (
+              <p>Loading skills...</p>
+            )}
           </div>
         </div>
 
@@ -149,9 +136,14 @@ const ResumeContent = () => {
           <p className="text-sm font-bold text-foreground">Want the full resume?</p>
           <p className="text-xs text-muted-foreground">Download the PDF version with complete details</p>
         </div>
-        <button className="xp-btn px-4 py-2 font-bold flex items-center gap-2">
+        <a 
+          href="https://drive.google.com/file/d/1vfalasgy-l-nFxmIMBktlRpe2rhEQjJi/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="xp-btn px-4 py-2 font-bold flex items-center gap-2 no-underline text-foreground"
+        >
           <Download className="w-4 h-4" /> Download PDF
-        </button>
+        </a>
       </motion.div>
     </div>
   );

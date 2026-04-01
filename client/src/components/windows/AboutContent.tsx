@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import { MapPin, GraduationCap, Heart, Coffee, Gamepad2, Music, Palette, Guitar } from "lucide-react";
+import { useMemo } from "react";
+import ReactMarkdown from "react-markdown";
+import { getAbout } from "@/lib/content";
 
 const AboutContent = () => {
+  const about = useMemo(() => getAbout(), []);
   const interests = [
     { icon: <Palette className="w-4 h-4" />, label: "Painting (District 2nd)" },
     { icon: <Guitar className="w-4 h-4" />, label: "Guitarist & Vocalist" },
@@ -56,12 +60,9 @@ const AboutContent = () => {
 
       {/* Bio Section */}
       <div className="xp-inset rounded-sm p-4" style={{ background: "hsl(0, 0%, 100%)" }}>
-        <p className="text-sm text-foreground leading-relaxed">
-          AI-focused full-stack developer building scalable, production-ready applications integrating LLMs and real-time systems.
-          Experienced in designing end-to-end architectures using React, Node.js, and MongoDB with AI-driven features.
-          Strong in algorithmic problem solving (100+ DSA problems) and building immersive, user-centric platforms
-          combining software engineering with generative AI.
-        </p>
+        <div className="text-sm text-foreground leading-relaxed prose prose-sm prose-p:my-0 pb-1 max-w-none">
+          {about?.body ? <ReactMarkdown>{about.body}</ReactMarkdown> : <p>Loading bio...</p>}
+        </div>
       </div>
 
       {/* Interests */}

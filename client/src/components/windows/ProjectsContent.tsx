@@ -1,100 +1,13 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { ExternalLink, Github, Star, GitFork, ArrowLeft, RefreshCw } from "lucide-react";
-
-interface Project {
-  id: string;
-  title: string;
-  description: string;
-  tech: string[];
-  github: string;
-  live?: string;
-  stars: number;
-  forks: number;
-  image: string;
-  screenshot: string;
-  date: string;
-  highlights: string[];
-}
-
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "Anime Style Interview App",
-    description: "A gamified AI-based interview preparation platform that solves the problem of boring and static interview practice systems. Users engage in dynamic, role-based technical challenges with real-time feedback.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "Groq (Llama 3.3)"],
-    github: "https://github.com/Kidrah-kun/Ani-Interview",
-    live: "https://ani-interview-vohr.vercel.app",
-    stars: 42,
-    forks: 8,
-    image: "🎌",
-    screenshot: "/projects/anime-interview.png",
-    date: "January 2026",
-    highlights: [
-      "LLM-based question generation & evaluation pipelines",
-      "Reduced redundant API processing, improving efficiency by 35%",
-      "RPG-style learning with adaptive difficulty & leaderboards",
-    ],
-  },
-  {
-    id: "2",
-    title: "Library Management System",
-    description: "A full-stack library system solving inefficiencies in manual book tracking processes, enabling digital borrowing workflows, role-based access control, and real-time availability management.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    github: "https://github.com/Kidrah-kun/Library_Management_System",
-    live: "https://good-lib-xjjg.vercel.app",
-    stars: 35,
-    forks: 12,
-    image: "📚",
-    screenshot: "/projects/library-management.png",
-    date: "November 2025",
-    highlights: [
-      "Optimized database queries & automated fine calculation",
-      "Reduced manual errors by approximately 30%",
-      "Interactive dashboards for borrowing, tracking & analytics",
-    ],
-  },
-  {
-    id: "3",
-    title: "Finance Management App",
-    description: "A personal finance management application for managing income, budgets, transactions, and savings goals through an intuitive dashboard interface with visual expense tracking.",
-    tech: ["React", "Recharts", "Local Storage"],
-    github: "https://github.com/Kidrah-kun/financeManagement",
-    live: "https://finance-management-kappa.vercel.app",
-    stars: 28,
-    forks: 6,
-    image: "💰",
-    screenshot: "/projects/finance-management.png",
-    date: "May 2025",
-    highlights: [
-      "Optimized state management & efficient data rendering",
-      "Reduced load time by approximately 25%",
-      "Interactive visualizations for financial insights",
-    ],
-  },
-  {
-    id: "4",
-    title: "Netflix Clone (Net-Mirror)",
-    description: "A full-stack Netflix clone replicating a real-world streaming platform's user experience, featuring secure Firebase authentication, dynamic movie browsing powered by the TMDB API, and an integrated YouTube-based trailer player — delivering a seamless, production-grade content discovery interface.",
-    tech: ["React 19", "React Router v7", "Firebase", "Vite", "TMDB API"],
-    github: "https://github.com/Kidrah-kun/NetClone",
-    live: "https://net-clone-eta.vercel.app/",
-    stars: 20,
-    forks: 5,
-    image: "🎬",
-    screenshot: "/projects/Net-Mirror.png",
-    date: "March 2026",
-    highlights: [
-      "Pixel-accurate Netflix UI with categorized movie carousels (Top Rated, Popular, Upcoming, Now Playing)",
-      "Real-time Firebase auth with persistent sessions & auth-state-driven route protection",
-      "Component-level lazy data fetching & ref-based horizontal scroll handling — ~30% fewer unnecessary re-renders",
-    ],
-  },
-];
+import ReactMarkdown from "react-markdown";
+import { getProjects, Project } from "@/lib/content";
 
 const ProjectsContent = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const projects = useMemo(() => getProjects(), []);
 
   return (
     <div className="p-3 sm:p-4 space-y-3">
@@ -218,6 +131,12 @@ const ProjectsContent = () => {
                 </span>
               ))}
             </div>
+
+            {selectedProject.body && selectedProject.body.trim() !== "" && (
+              <div className="mt-6 pt-4 border-t prose prose-sm prose-invert max-w-none text-foreground" style={{ borderColor: "hsl(210, 15%, 85%)" }}>
+                <ReactMarkdown>{selectedProject.body}</ReactMarkdown>
+              </div>
+            )}
           </div>
         </motion.div>
       ) : (
