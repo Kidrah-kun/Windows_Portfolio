@@ -2,12 +2,13 @@ import { motion } from "framer-motion";
 import { Download, Eye, FileText, Award, Briefcase, GraduationCap, Code } from "lucide-react";
 import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
-import { getProjects, getEducation, getSkills } from "@/lib/content";
+import { getProjects, getEducation, getSkills, getCertifications } from "@/lib/content";
 
 const ResumeContent = () => {
   const education = useMemo(() => getEducation(), []);
   const projects = useMemo(() => getProjects().slice(0, 3), []);
   const skills = useMemo(() => getSkills(), []);
+  const certifications = useMemo(() => getCertifications(), []);
   return (
     <div className="p-4 space-y-4">
       {/* Toolbar */}
@@ -118,6 +119,31 @@ const ResumeContent = () => {
           <div className="ml-6 text-xs text-foreground space-y-1">
             <p>• <strong>Painting:</strong> District 2nd place winner; multiple zonal-level achievements</p>
             <p>• <strong>Music:</strong> Guitarist (electric & acoustic) and vocalist; zonal-level performances in band competitions</p>
+          </div>
+        </div>
+
+        {/* Certifications */}
+        <div>
+          <h3 className="flex items-center gap-2 text-sm font-bold text-primary mb-2">
+             <Award className="w-4 h-4" /> CERTIFICATIONS
+          </h3>
+          <div className="ml-6 space-y-2">
+            {certifications.map((cert, i) => (
+              <div key={i} className="flex justify-between items-start group">
+                <div className="max-w-[80%]">
+                  <a 
+                    href={cert.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-xs font-semibold text-foreground hover:text-primary no-underline transition-colors block"
+                  >
+                    • {cert.title}
+                  </a>
+                  <p className="text-[10px] text-muted-foreground ml-2">{cert.issuer}</p>
+                </div>
+                <span className="text-[10px] text-muted-foreground">{cert.date}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>

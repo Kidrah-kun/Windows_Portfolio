@@ -24,6 +24,15 @@ export interface Education {
   order: number;
 }
 
+export interface Certification {
+  title: string;
+  issuer: string;
+  date: string;
+  driveId: string;
+  url: string;
+  order: number;
+}
+
 export const getProjects = (): Project[] => {
   const files = import.meta.glob('../contents/projects/*.mdx', { query: '?raw', import: 'default', eager: true });
   return Object.values(files).map((content: any) => {
@@ -59,4 +68,12 @@ export const getAbout = (): any => {
   const raw = Object.values(files)[0] as string;
   if (!raw) return null;
   return fm<any>(raw);
+};
+
+export const getCertifications = (): Certification[] => {
+  const files = import.meta.glob('../contents/certifications/*.mdx', { query: '?raw', import: 'default', eager: true });
+  return Object.values(files).map((content: any) => {
+    const { attributes } = fm<any>(content);
+    return attributes as Certification;
+  }).sort((a, b) => (a.order || 99) - (b.order || 99));
 };
