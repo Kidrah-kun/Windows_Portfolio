@@ -74,8 +74,8 @@ const StartMenu = ({ onOpenWindow, onClose }: StartMenuProps) => {
           <p className="text-[10px] font-bold uppercase tracking-wider text-muted-foreground mb-2 px-2">Links</p>
           {[
             { icon: <Github className="w-3.5 h-3.5" />, label: "GitHub", href: "https://github.com/Kidrah-kun" },
-            { icon: <Linkedin className="w-3.5 h-3.5" />, label: "LinkedIn", href: "https://www.linkedin.com/in/hardik-hathwal-5098b2316/" },
-            { icon: <ExternalLink className="w-3.5 h-3.5" />, label: "LeetCode", href: "https://leetcode.com/u/RNAksMnYN6/" },
+            { icon: <Linkedin className="w-3.5 h-3.5" />, label: "LinkedIn", href: "https://www.linkedin.com/in/hardik-hathwal/" },
+            { icon: <ExternalLink className="w-3.5 h-3.5" />, label: "LeetCode", href: "https://leetcode.com/u/Hardik-Hathwal/" },
           ].map((link) => (
             <a
               key={link.label}

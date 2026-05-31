@@ -176,10 +176,10 @@ const MobileShell = () => {
                     <a href="https://github.com/Kidrah-kun" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs text-white/90 font-medium" style={{ background: "rgba(255,255,255,0.1)" }}>
                       <Github className="w-3.5 h-3.5" /> GitHub
                     </a>
-                    <a href="https://www.linkedin.com/in/hardik-hathwal-5098b2316/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs text-white/90 font-medium" style={{ background: "rgba(255,255,255,0.1)" }}>
+                    <a href="https://www.linkedin.com/in/hardik-hathwal/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs text-white/90 font-medium" style={{ background: "rgba(255,255,255,0.1)" }}>
                       <Linkedin className="w-3.5 h-3.5" /> LinkedIn
                     </a>
-                    <a href="https://leetcode.com/u/RNAksMnYN6/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs text-white/90 font-medium" style={{ background: "rgba(255,255,255,0.1)" }}>
+                    <a href="https://leetcode.com/u/Hardik-Hathwal/" target="_blank" rel="noopener noreferrer" className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-xs text-white/90 font-medium" style={{ background: "rgba(255,255,255,0.1)" }}>
                       <ExternalLink className="w-3.5 h-3.5" /> LC
                     </a>
                   </div>

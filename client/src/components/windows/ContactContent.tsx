@@ -43,8 +43,8 @@ const ContactContent = () => {
     { icon: <Mail className="w-5 h-5" />, label: "Email", value: "hardikhathwal.work@gmail.com", href: "mailto:hardikhathwal.work@gmail.com" },
     { icon: <Phone className="w-5 h-5" />, label: "Phone", value: "+91 8909656869", href: "tel:+918909656869" },
     { icon: <Github className="w-5 h-5" />, label: "GitHub", value: "github.com/Kidrah-kun", href: "https://github.com/Kidrah-kun" },
-    { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", value: "Hardik Hathwal", href: "https://www.linkedin.com/in/hardik-hathwal-5098b2316/" },
-    { icon: <Code2 className="w-5 h-5" />, label: "LeetCode", value: "leetcode.com/u/RNAksMnYN6", href: "https://leetcode.com/u/RNAksMnYN6/" },
+    { icon: <Linkedin className="w-5 h-5" />, label: "LinkedIn", value: "Hardik Hathwal", href: "https://www.linkedin.com/in/hardik-hathwal/" },
+    { icon: <Code2 className="w-5 h-5" />, label: "LeetCode", value: "leetcode.com/u/Hardik-Hathwal", href: "https://leetcode.com/u/Hardik-Hathwal/" },
   ];
 
   return (
