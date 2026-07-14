@@ -33,7 +33,7 @@ const AboutContent = () => {
           whileHover={{ rotate: [0, -2, 2, 0] }}
           transition={{ duration: 0.4 }}
         >
-          <img src="/profile.png" alt="Profile" className="w-full h-full object-cover" />
+          <img src="/profile.png?v=2" alt="Profile" className="w-full h-full object-cover" />
         </motion.div>
 
         {/* Info */}
