@@ -33,9 +33,7 @@ const AboutContent = () => {
           whileHover={{ rotate: [0, -2, 2, 0] }}
           transition={{ duration: 0.4 }}
         >
-          <div className="w-full h-full flex items-center justify-center text-5xl" style={{ background: "linear-gradient(135deg, #1a1a2e, #16213e)" }}>
-            👨‍💻
-          </div>
+          <img src="/profile.png" alt="Profile" className="w-full h-full object-cover" />
         </motion.div>
 
         {/* Info */}

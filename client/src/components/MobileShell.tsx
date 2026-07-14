@@ -172,8 +172,8 @@ const MobileShell = () => {
                   transition={{ delay: 0.4 }}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl" style={{ background: "linear-gradient(135deg, #1a1a2e, #16213e)", border: "2px solid rgba(255,255,255,0.3)" }}>
-                      👨‍💻
+                    <div className="w-12 h-12 rounded-full flex items-center justify-center text-2xl overflow-hidden" style={{ background: "linear-gradient(135deg, #1a1a2e, #16213e)", border: "2px solid rgba(255,255,255,0.3)" }}>
+                      <img src="/profile.png" alt="Profile" className="w-full h-full object-cover" />
                     </div>
                     <div>
                       <p className="text-white font-semibold text-sm">Hardik Hathwal</p>
