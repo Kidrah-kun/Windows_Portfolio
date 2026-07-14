@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { AnimatePresence } from "framer-motion";
-import { User, Code, FolderOpen, FileText, Mail, Terminal } from "lucide-react";
+import { User, Code, FolderOpen, FileText, Mail, Terminal, Briefcase, Award } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import blissWallpaper from "@/assets/xp-bliss.jpg";
 import BootScreen from "@/components/BootScreen";
@@ -17,6 +17,8 @@ import ProjectsContent from "@/components/windows/ProjectsContent";
 import ResumeContent from "@/components/windows/ResumeContent";
 import ContactContent from "@/components/windows/ContactContent";
 import TerminalContent from "@/components/windows/TerminalContent";
+import ExperienceContent from "@/components/windows/ExperienceContent";
+import CertificatesContent from "@/components/windows/CertificatesContent";
 
 interface WindowState {
   id: string;
@@ -35,6 +37,8 @@ const defaultWindows: WindowState[] = [
   { id: "techstack", title: "Tech Stack", icon: <Code className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 150, y: 60 }, defaultSize: { width: 680, height: 550 } },
   { id: "projects", title: "My Projects", icon: <FolderOpen className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 200, y: 50 }, defaultSize: { width: 720, height: 530 } },
   { id: "resume", title: "Resume - Notepad", icon: <FileText className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 120, y: 70 }, defaultSize: { width: 650, height: 560 } },
+  { id: "certificates", title: "Certificates - Preview", icon: <Award className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 140, y: 65 }, defaultSize: { width: 700, height: 500 } },
+  { id: "experience", title: "Experience - Explorer", icon: <Briefcase className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 160, y: 55 }, defaultSize: { width: 680, height: 540 } },
   { id: "contact", title: "Contact - Outlook Express", icon: <Mail className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 180, y: 45 }, defaultSize: { width: 700, height: 480 } },
   { id: "terminal", title: "Command Prompt", icon: <Terminal className="w-4 h-4 text-primary-foreground" />, isOpen: false, isMinimized: false, isMaximized: false, zIndex: 1, defaultPosition: { x: 100, y: 80 }, defaultSize: { width: 640, height: 420 } },
 ];
@@ -43,6 +47,8 @@ const desktopIcons = [
   { id: "about", label: "About Me", icon: <User className="w-8 h-8" /> },
   { id: "techstack", label: "Tech Stack", icon: <Code className="w-8 h-8" /> },
   { id: "projects", label: "My Projects", icon: <FolderOpen className="w-8 h-8" /> },
+  { id: "certificates", label: "Certificates", icon: <Award className="w-8 h-8" /> },
+  { id: "experience", label: "Experience", icon: <Briefcase className="w-8 h-8" /> },
   { id: "resume", label: "Resume.pdf", icon: <FileText className="w-8 h-8" /> },
   { id: "contact", label: "Contact Me", icon: <Mail className="w-8 h-8" /> },
   { id: "terminal", label: "Terminal", icon: <Terminal className="w-8 h-8" /> },
@@ -52,6 +58,8 @@ const windowContent: Record<string, React.ReactNode> = {
   about: <AboutContent />,
   techstack: <TechStackContent />,
   projects: <ProjectsContent />,
+  certificates: <CertificatesContent />,
+  experience: <ExperienceContent />,
   resume: <ResumeContent />,
   contact: <ContactContent />,
   terminal: <TerminalContent />,

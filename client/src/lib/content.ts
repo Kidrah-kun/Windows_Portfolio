@@ -9,8 +9,9 @@ export interface Project {
   live?: string;
   stars: number;
   forks: number;
-  image: string;
-  screenshot: string;
+  category: string;
+  image?: string;
+  screenshot?: string;
   date: string;
   highlights: string[];
   body?: string;
@@ -42,6 +43,11 @@ export const getProjects = (): Project[] => {
       body,
       stars: attributes.stars || 0,
       forks: attributes.forks || 0,
+      github: attributes.github || "",
+      live: attributes.live || "",
+      category: attributes.category || "Web Development",
+      image: attributes.image,
+      screenshot: attributes.screenshot,
       highlights: attributes.highlights || [],
       tech: attributes.tech || [],
     } as Project;
@@ -75,5 +81,44 @@ export const getCertifications = (): Certification[] => {
   return Object.values(files).map((content: any) => {
     const { attributes } = fm<any>(content);
     return attributes as Certification;
+  }).sort((a, b) => (a.order || 99) - (b.order || 99));
+};
+
+export interface ExperienceProject {
+  title: string;
+  description: string;
+  pages: number;
+  components: number;
+  sourceFiles: number;
+}
+
+export interface Experience {
+  id: string;
+  company: string;
+  role: string;
+  type: string;
+  startDate: string;
+  endDate: string;
+  duration: string;
+  location: string;
+  companyDescription: string;
+  tech: string[];
+  highlights: string[];
+  projects: ExperienceProject[];
+  order: number;
+  body?: string;
+}
+
+export const getExperiences = (): Experience[] => {
+  const files = import.meta.glob('../contents/experience/*.mdx', { query: '?raw', import: 'default', eager: true });
+  return Object.values(files).map((content: any) => {
+    const { attributes, body } = fm<any>(content);
+    return {
+      ...attributes,
+      body,
+      tech: attributes.tech || [],
+      highlights: attributes.highlights || [],
+      projects: attributes.projects || [],
+    } as Experience;
   }).sort((a, b) => (a.order || 99) - (b.order || 99));
 };

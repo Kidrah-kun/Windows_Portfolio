@@ -1,0 +1,18 @@
+---
+id: "6"
+title: "AI Resume Screener"
+description: "An automated NLP system that parses resumes, extracts named entities, and ranks applicants against job descriptions using Sentence Transformers and Cosine Similarity."
+tech: ["Python", "Flask", "Streamlit", "Sentence Transformers", "spaCy", "Scikit-Learn", "Groq LLaMA"]
+github: "https://github.com/Kidrah-kun/resume-screener"
+category: "AI / Machine Learning"
+image: "📄"
+screenshot: "/projects/resume-screener.png"
+---
+An automated resume screening system that parses resumes in PDF and DOCX formats, extracts key skills and experience, and ranks applicants against a job description using NLP similarity techniques. It combines semantic search, traditional ML classification, and LLM analysis via the Groq API.
+
+## Key Highlights
+- Calculates semantic similarity using Sentence Transformers (all-MiniLM-L6-v2) and cosine similarity.
+- Extracts named entities (NER) and experience metadata using spaCy and Regex.
+- Computes a weighted composite score combining similarity, keyword matching, and section completeness.
+- Uses Random Forest for baseline resume category classification.
+- Features an interactive Streamlit dashboard for HR personnel.

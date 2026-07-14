@@ -2,13 +2,14 @@ import { motion } from "framer-motion";
 import { Download, Eye, FileText, Award, Briefcase, GraduationCap, Code } from "lucide-react";
 import { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
-import { getProjects, getEducation, getSkills, getCertifications } from "@/lib/content";
+import { getProjects, getEducation, getSkills, getCertifications, getExperiences } from "@/lib/content";
 
 const ResumeContent = () => {
   const education = useMemo(() => getEducation(), []);
   const projects = useMemo(() => getProjects().slice(0, 3), []);
   const skills = useMemo(() => getSkills(), []);
   const certifications = useMemo(() => getCertifications(), []);
+  const experiences = useMemo(() => getExperiences(), []);
   return (
     <div className="p-4 space-y-4">
       {/* Toolbar */}
@@ -60,6 +61,31 @@ const ResumeContent = () => {
             </p>
           </div>
         </div>
+
+        {/* Experience */}
+        {experiences.length > 0 && (
+          <div>
+            <h3 className="flex items-center gap-2 text-sm font-bold text-primary mb-2">
+              <Briefcase className="w-4 h-4" /> EXPERIENCE
+            </h3>
+            <div className="ml-6 space-y-4">
+              {experiences.map((exp, i) => (
+                <div key={i}>
+                  <div className="flex justify-between">
+                    <p className="text-sm font-semibold text-foreground">{exp.role} @ {exp.company}</p>
+                    <p className="text-xs text-muted-foreground">{exp.duration}</p>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground mb-1">{exp.location} • {exp.type}</p>
+                  <ul className="text-xs text-foreground space-y-1">
+                    {exp.highlights.slice(0, 3).map((highlight, j) => (
+                      <li key={j}>• {highlight}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Education */}
         <div>

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   User, Code, FolderOpen, FileText, Mail, Terminal,
   Wifi, Battery, Signal, ChevronLeft, Home, LayoutGrid,
-  ChevronUp, Github, Linkedin, ExternalLink
+  ChevronUp, Github, Linkedin, ExternalLink, Briefcase, Award
 } from "lucide-react";
 import blissWallpaper from "@/assets/xp-bliss.jpg";
 import AboutContent from "@/components/windows/AboutContent";
@@ -12,11 +12,15 @@ import ProjectsContent from "@/components/windows/ProjectsContent";
 import ResumeContent from "@/components/windows/ResumeContent";
 import ContactContent from "@/components/windows/ContactContent";
 import TerminalContent from "@/components/windows/TerminalContent";
+import ExperienceContent from "@/components/windows/ExperienceContent";
+import CertificatesContent from "@/components/windows/CertificatesContent";
 
 const apps = [
   { id: "about", label: "About Me", icon: <User className="w-7 h-7" />, color: "#2196F3" },
   { id: "techstack", label: "Tech Stack", icon: <Code className="w-7 h-7" />, color: "#4CAF50" },
   { id: "projects", label: "Projects", icon: <FolderOpen className="w-7 h-7" />, color: "#FF9800" },
+  { id: "certificates", label: "Certificates", icon: <Award className="w-7 h-7" />, color: "#8E24AA" },
+  { id: "experience", label: "Experience", icon: <Briefcase className="w-7 h-7" />, color: "#00897B" },
   { id: "resume", label: "Resume", icon: <FileText className="w-7 h-7" />, color: "#9C27B0" },
   { id: "contact", label: "Contact", icon: <Mail className="w-7 h-7" />, color: "#F44336" },
   { id: "terminal", label: "Terminal", icon: <Terminal className="w-7 h-7" />, color: "#607D8B" },
@@ -26,6 +30,8 @@ const appContent: Record<string, React.ReactNode> = {
   about: <AboutContent />,
   techstack: <TechStackContent />,
   projects: <ProjectsContent />,
+  certificates: <CertificatesContent />,
+  experience: <ExperienceContent />,
   resume: <ResumeContent />,
   contact: <ContactContent />,
   terminal: <TerminalContent />,
@@ -35,6 +41,8 @@ const appTitles: Record<string, string> = {
   about: "About Me",
   techstack: "Tech Stack",
   projects: "My Projects",
+  certificates: "Certificates",
+  experience: "Experience",
   resume: "Resume",
   contact: "Contact",
   terminal: "Terminal",

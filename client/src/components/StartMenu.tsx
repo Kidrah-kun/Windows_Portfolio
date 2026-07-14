@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { User, Code, FolderOpen, FileText, Mail, ExternalLink, Github, Linkedin, Terminal } from "lucide-react";
+import { User, Code, FolderOpen, FileText, Mail, ExternalLink, Github, Linkedin, Terminal, Briefcase, Award } from "lucide-react";
 
 interface StartMenuProps {
   onOpenWindow: (id: string) => void;
@@ -10,6 +10,8 @@ const menuItems = [
   { id: "about", label: "About Me", icon: <User className="w-8 h-8" />, desc: "Learn about me" },
   { id: "techstack", label: "Tech Stack", icon: <Code className="w-8 h-8" />, desc: "Skills & technologies" },
   { id: "projects", label: "Projects", icon: <FolderOpen className="w-8 h-8" />, desc: "My portfolio work" },
+  { id: "certificates", label: "Certificates", icon: <Award className="w-8 h-8" />, desc: "Verified credentials" },
+  { id: "experience", label: "Experience", icon: <Briefcase className="w-8 h-8" />, desc: "Internships & work" },
   { id: "resume", label: "Resume", icon: <FileText className="w-8 h-8" />, desc: "Download my CV" },
   { id: "contact", label: "Contact", icon: <Mail className="w-8 h-8" />, desc: "Get in touch" },
   { id: "terminal", label: "Terminal", icon: <Terminal className="w-8 h-8" />, desc: "Command prompt" },

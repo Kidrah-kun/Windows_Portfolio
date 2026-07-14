@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useMemo } from "react";
-import { ExternalLink, Github, Star, GitFork, ArrowLeft, RefreshCw } from "lucide-react";
+import { ExternalLink, Github, ArrowLeft, RefreshCw } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import { getProjects, Project } from "@/lib/content";
 
@@ -8,6 +8,15 @@ const ProjectsContent = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const projects = useMemo(() => getProjects(), []);
+
+  const groupedProjects = useMemo(() => {
+    return projects.reduce((acc, project) => {
+      const cat = project.category || "Web Development";
+      if (!acc[cat]) acc[cat] = [];
+      acc[cat].push(project);
+      return acc;
+    }, {} as Record<string, Project[]>);
+  }, [projects]);
 
   return (
     <div className="p-3 sm:p-4 space-y-3">
@@ -141,94 +150,102 @@ const ProjectsContent = () => {
         </motion.div>
       ) : (
         /* Grid/List View */
-        <div className={viewMode === "grid" ? "grid grid-cols-1 sm:grid-cols-2 gap-3" : "space-y-2"}>
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.id}
-              className="rounded-sm cursor-pointer transition-all group overflow-hidden"
-              style={{
-                border: "1px solid hsl(210, 15%, 85%)",
-              }}
-              onClick={() => setSelectedProject(project)}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              whileHover={{
-                y: -4,
-                boxShadow: "0 6px 20px hsl(0, 0%, 0%, 0.15)",
-              }}
-            >
-              {/* Screenshot Thumbnail */}
-              {project.screenshot ? (
-                <div className="relative h-28 overflow-hidden">
-                  <img
-                    src={project.screenshot}
-                    alt={project.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div
-                    className="absolute inset-0 transition-opacity duration-300"
+        <div className="space-y-6 pr-1 pb-4">
+          {Object.entries(groupedProjects).map(([category, catProjects]) => (
+            <div key={category}>
+              <h3 className="text-sm font-bold text-foreground mb-3 flex items-center gap-2">
+                <span className="w-4 h-0.5 bg-primary" />
+                {category}
+              </h3>
+              <div className={viewMode === "grid" ? "grid grid-cols-1 sm:grid-cols-2 gap-3" : "space-y-2"}>
+                {catProjects.map((project, i) => (
+                  <motion.div
+                    key={project.id}
+                    className="rounded-sm cursor-pointer transition-all group overflow-hidden"
                     style={{
-                      background: "linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.65) 100%)",
+                      border: "1px solid hsl(210, 15%, 85%)",
                     }}
-                  />
-                  <div className="absolute bottom-2 left-2 right-2">
-                    <h4 className="text-sm font-bold text-white drop-shadow-lg truncate">
-                      {project.title}
-                    </h4>
-                    <p className="text-[10px] text-white/70">{project.date}</p>
-                  </div>
-                </div>
-              ) : (
-                <div
-                  className="relative h-28 overflow-hidden flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg, hsl(216, 80%, 92%), hsl(216, 60%, 85%))" }}
-                >
-                  <span className="text-4xl">{project.image}</span>
-                  <div className="absolute bottom-2 left-2 right-2">
-                    <h4 className="text-sm font-bold text-foreground truncate">
-                      {project.title}
-                    </h4>
-                    <p className="text-[10px] text-muted-foreground">{project.date}</p>
-                  </div>
-                </div>
-              )}
-
-              {/* Card Footer */}
-              <div className="p-2.5" style={{ background: "hsl(0, 0%, 100%)" }}>
-                <p className="text-xs text-muted-foreground line-clamp-2">{project.description}</p>
-                <div className="flex items-center justify-between mt-2">
-                  <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-0.5"><Star className="w-3 h-3" /> {project.stars}</span>
-                    <span className="flex items-center gap-0.5"><GitFork className="w-3 h-3" /> {project.forks}</span>
-                  </div>
-                  <div className="flex gap-1">
-                    {project.live && (
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1 rounded-sm hover:bg-primary/10 transition-colors"
-                        onClick={e => e.stopPropagation()}
-                        title="Live Demo"
+                    onClick={() => setSelectedProject(project)}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    whileHover={{
+                      y: -4,
+                      boxShadow: "0 6px 20px hsl(0, 0%, 0%, 0.15)",
+                    }}
+                  >
+                    {/* Screenshot Thumbnail */}
+                    {project.screenshot ? (
+                      <div className="relative h-28 overflow-hidden">
+                        <img
+                          src={project.screenshot}
+                          alt={project.title}
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div
+                          className="absolute inset-0 transition-opacity duration-300"
+                          style={{
+                            background: "linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.65) 100%)",
+                          }}
+                        />
+                        <div className="absolute bottom-2 left-2 right-2">
+                          <h4 className="text-sm font-bold text-white drop-shadow-lg truncate">
+                            {project.title}
+                          </h4>
+                          <p className="text-[10px] text-white/70">{project.date}</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div
+                        className="relative h-28 overflow-hidden flex items-center justify-center"
+                        style={{ background: "linear-gradient(135deg, hsl(216, 80%, 92%), hsl(216, 60%, 85%))" }}
                       >
-                        <ExternalLink className="w-3.5 h-3.5 text-primary" />
-                      </a>
+                        <span className="text-4xl">{project.image}</span>
+                        <div className="absolute bottom-2 left-2 right-2">
+                          <h4 className="text-sm font-bold text-foreground truncate">
+                            {project.title}
+                          </h4>
+                          <p className="text-[10px] text-muted-foreground">{project.date}</p>
+                        </div>
+                      </div>
                     )}
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-1 rounded-sm hover:bg-primary/10 transition-colors"
-                      onClick={e => e.stopPropagation()}
-                      title="GitHub"
-                    >
-                      <Github className="w-3.5 h-3.5 text-foreground" />
-                    </a>
-                  </div>
-                </div>
+
+                    {/* Card Footer */}
+                    <div className="p-2.5" style={{ background: "hsl(0, 0%, 100%)" }}>
+                      <p className="text-xs text-muted-foreground line-clamp-2">{project.description}</p>
+                      <div className="flex items-center justify-between mt-2">
+                        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        </div>
+                        <div className="flex gap-1">
+                          {project.live && (
+                            <a
+                              href={project.live}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="p-1 rounded-sm hover:bg-primary/10 transition-colors"
+                              onClick={e => e.stopPropagation()}
+                              title="Live Demo"
+                            >
+                              <ExternalLink className="w-3.5 h-3.5 text-primary" />
+                            </a>
+                          )}
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1 rounded-sm hover:bg-primary/10 transition-colors"
+                            onClick={e => e.stopPropagation()}
+                            title="GitHub"
+                          >
+                            <Github className="w-3.5 h-3.5 text-foreground" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       )}
