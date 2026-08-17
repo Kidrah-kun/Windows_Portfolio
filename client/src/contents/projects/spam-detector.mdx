@@ -1,20 +1,21 @@
 ---
 id: "7"
 title: "Spam Detection Engine"
-description: "A machine learning pipeline and Streamlit dashboard that classifies messages as spam or ham using custom structural text features and TF-IDF vectors."
-tech: ["Python", "Streamlit", "Scikit-Learn", "NLTK", "Pandas"]
+description: "NLP spam classifier combining TF-IDF text embeddings with 9 hand-engineered structural features. Trains 4 models (Naive Bayes, LR, Random Forest, SVM) and serves real-time predictions via an interactive Streamlit dashboard."
+tech: ["Python", "Streamlit", "Scikit-Learn", "NLTK", "SciPy", "Pandas", "NumPy"]
 github: "https://github.com/Kidrah-kun/spam-detector"
 category: "AI / Machine Learning"
 image: "📧"
 screenshot: "/projects/spam-detector.png?v=2"
 date: "June 2026"
 highlights:
-  - "Preprocesses raw text with NLTK for tokenization, stemming, and URL removal"
-  - "Engineers 9 custom structural features, such as message length and uppercase ratio"
-  - "Trains and compares multiple models including Random Forest, SVM, and Logistic Regression"
-  - "Serves predictions in real-time through an interactive Streamlit dashboard"
+  - "Hybrid feature pipeline: TF-IDF vocabulary embeddings + 9 hand-engineered structural features (uppercase ratio, link count, exclamation marks, spam trigger words)"
+  - "Full NLTK preprocessing: lowercasing, URL removal, punctuation stripping, Porter stemming"
+  - "Trained and compared 4 classifiers: Naive Bayes, Logistic Regression, Random Forest, SVM (Linear)"
+  - "Real-time Streamlit dashboard with per-prediction confidence scores and feature breakdowns"
+  - "All models serialized as .pkl files for fast inference — no retraining at runtime"
 ---
 
 # Spam Detection Engine
 
-A machine learning web application that classifies messages as spam or legitimate (ham). It uses a synthetic dataset of common spam and ham templates to demonstrate robust text classification using TF-IDF and structured feature extraction.
+An end-to-end NLP pipeline for binary spam/ham text classification. Combines TF-IDF vocabulary representations with 9 custom structural features (message length, uppercase ratio, link count, exclamation marks, spam trigger word count, etc.) for robust classification. Deployed as an interactive Streamlit dashboard with real-time predictions.

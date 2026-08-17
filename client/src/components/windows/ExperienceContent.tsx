@@ -97,6 +97,18 @@ const ExperienceContent = () => {
                   >
                     {selectedExp.type}
                   </span>
+                  {selectedExp.type === "Research Internship" && (
+                    <span
+                      className="px-2 py-0.5 rounded-sm text-[10px] font-bold uppercase tracking-wider flex items-center gap-1"
+                      style={{
+                        background: "rgba(255, 215, 0, 0.2)",
+                        color: "hsl(50, 100%, 80%)",
+                        border: "1px solid rgba(255, 215, 0, 0.35)",
+                      }}
+                    >
+                      🎓 Certified
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -172,20 +184,45 @@ const ExperienceContent = () => {
                     <p className="text-xs text-muted-foreground leading-relaxed mb-2.5">
                       {proj.description}
                     </p>
-                    <div className="flex flex-wrap gap-3 text-[10px] text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Globe className="w-3 h-3 text-primary" />
-                        {proj.pages} pages
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Layers className="w-3 h-3 text-primary" />
-                        {proj.components} components
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <FileCode2 className="w-3 h-3 text-primary" />
-                        {proj.sourceFiles} source files
-                      </span>
-                    </div>
+                    {selectedExp.type === "Research Internship" ? (
+                      <div className="flex flex-wrap gap-2">
+                        <span
+                          className="px-2 py-0.5 text-[9px] font-bold rounded-sm uppercase tracking-wider"
+                          style={{
+                            background: "hsl(270, 60%, 93%)",
+                            color: "hsl(270, 65%, 38%)",
+                            border: "1px solid hsl(270, 50%, 85%)",
+                          }}
+                        >
+                          🤖 AI / ML Project
+                        </span>
+                        <span
+                          className="px-2 py-0.5 text-[9px] font-bold rounded-sm uppercase tracking-wider"
+                          style={{
+                            background: "hsl(200, 60%, 93%)",
+                            color: "hsl(200, 65%, 38%)",
+                            border: "1px solid hsl(200, 50%, 85%)",
+                          }}
+                        >
+                          🔐 Cybersecurity
+                        </span>
+                      </div>
+                    ) : (
+                      <div className="flex flex-wrap gap-3 text-[10px] text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                          <Globe className="w-3 h-3 text-primary" />
+                          {proj.pages} pages
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Layers className="w-3 h-3 text-primary" />
+                          {proj.components} components
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <FileCode2 className="w-3 h-3 text-primary" />
+                          {proj.sourceFiles} source files
+                        </span>
+                      </div>
+                    )}
                   </motion.div>
                 ))}
               </div>

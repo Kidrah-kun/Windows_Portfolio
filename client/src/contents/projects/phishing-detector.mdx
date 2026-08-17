@@ -1,0 +1,21 @@
+---
+id: "8"
+title: "Phishing Website Detector"
+description: "ML pipeline to classify URLs as phishing or legitimate using 46 validated features. XGBoost achieved F1=0.9999 on 235,795 URLs — only 1 missed phishing page out of 20,104 test samples."
+tech: ["Python", "XGBoost", "Scikit-Learn", "BeautifulSoup", "Pandas", "NumPy", "Matplotlib", "python-whois"]
+github: "https://github.com/Kidrah-kun/phishing-detector"
+category: "AI / Machine Learning"
+image: "🎣"
+screenshot: "/projects/phishing-detector.png"
+date: "June 2026"
+highlights:
+  - "Trained on 235,795 URLs from the PhiUSIIL benchmark dataset (UCI ML Repository)"
+  - "Identified and removed 5 data-leaked features through rigorous correlation and distribution analysis"
+  - "Compared 5 models: Logistic Regression, Naive Bayes, Random Forest, XGBoost, MLP"
+  - "Best model (XGBoost): F1=0.9999, AUC=1.000, Recall=1.000 — only 1 false negative in 20,104 samples"
+  - "Built custom web scraper extracting URL-string, HTML, and WHOIS features from live websites"
+---
+
+# Phishing Website Detector
+
+A rigorous machine learning pipeline that classifies URLs as phishing or legitimate using 46 carefully validated features. A key contribution was the detection and removal of 5 data-leaked features that caused artificially inflated 100% accuracy on initial naive models — demonstrating applied understanding of data leakage in real-world ML.
